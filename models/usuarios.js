@@ -1,26 +1,27 @@
 module.exports = function(sequelize, DataType) {
-  const Filmes = sequelize.define('filmes', {
+  const Usuarios = sequelize.define("usuarios", {
     id: {
       type: DataType.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    titulo: {
-      type:  DataType.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
-    diretor: {
+    nome: {
       type: DataType.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    quantidade: {
-      type: DataType.INTEGER,
+    password: {
+      type: DataType.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
+    email: {
+      type: DataType.STRING,
+      unique: true,
       allowNull: false,
       validate: {
         notEmpty: true
@@ -28,5 +29,5 @@ module.exports = function(sequelize, DataType) {
     }
   });
 
-  return Filmes;
-};
+  return Usuarios;
+}
