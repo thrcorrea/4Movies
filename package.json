@@ -1,0 +1,27 @@
+{
+  "name": "4movies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thrcorrea/4Movies.git"
+  },
+  "author": "thrcorrea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thrcorrea/4Movies/issues"
+  },
+  "homepage": "https://github.com/thrcorrea/4Movies#readme",
+  "dependencies": {
+    "consign": "^0.1.2",
+    "express": "^4.14.0",
+    "pg": "^6.1.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.0"
+  }
+}
