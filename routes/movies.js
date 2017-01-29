@@ -93,7 +93,7 @@ module.exports = function(app) {
           if (filme.quantidade > 0){
             filme.decrement('quantidade')
               .then(function(result){
-                res.sendStatus(204);
+                res.json({filme: filme, msg: "Alugado com sucesso"});
               })
               .catch(function(error) {
                 res.sendStatus(412).json({msg: error.message});
@@ -116,7 +116,7 @@ module.exports = function(app) {
         if (filme) {
           filme.increment('quantidade')
             .then(function(result){
-              res.sendStatus(204);
+              res.json({filme: filme, msg: "Devolvido com sucesso"});
             })
             .catch(function(error) {
               res.sendStatus(412).json({msg: error.message});

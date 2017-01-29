@@ -6,25 +6,19 @@ module.exports = function(app,passport) {
     passwordFiled: 'password'
   },
   function(username, password, done){
-    console.log("iniciou strategia");
     const Usuarios = app.db.models.usuarios;
-    console.log("usuario " + username);
 
     Usuarios.find({where: {nome: username }})
       .then(function(usuario){
-        console.log("usuario " + usuario.nome);
-        console.log("senha " + usuario.password);
-        console.log("senha requisicao " + password);
         if (!usuario) {
           return done(null, false, {message: "O usuario não existe"});
-        } else if (password != usuario.password) {
+        } else if (!Usuarios.isPassword(usuario.password, password )) {  //   password != usuario.password) {
           return done(null, false, {message: "Senha errada"});
         } else {
           return done(null, usuario);
         }
       })
       .catch(function(error) {
-        console.log("erro na estrategia");
         return done(error);
       });
     }
