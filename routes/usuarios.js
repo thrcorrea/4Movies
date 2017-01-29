@@ -1,7 +1,15 @@
 module.exports = function(app){
   const Usuarios = app.db.models.usuarios;
 
-  app.get("/usuarios/:id", function(req, res) {
+  function requerAutenticacao(req, res, next){
+    if (!req.isAuthenticated()){
+      res.json({msg: "Autenticação requerida"});
+    } else {
+      next();
+    }
+  };
+
+  app.get("/usuarios/:id", requerAutenticacao, function(req, res) {
     Usuarios.findById(req.params.id, {
       attributes: ["id", "nome", "email"]
     })
@@ -13,7 +21,7 @@ module.exports = function(app){
     });
   });
 
-  app.delete("/usuarios/:id", function(req, res){
+  app.delete("/usuarios/:id", requerAutenticacao, function(req, res){
     Usuarios.destroy({where: {id: req.params.id}})
       .then(function(result){
         res.sendStatus(204)
