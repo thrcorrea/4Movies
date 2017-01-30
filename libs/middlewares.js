@@ -32,15 +32,6 @@ module.exports = function(app){
     })(req, res, next);
   });
 
-  app.get('/logout', function(req, res){
-    if(req.isAuthenticated()){
-      req.logout();
-      res.sendStatus(204);
-    } else {
-      res.json({msg: "Usuário não está autenticado."})
-    }
-  });
-
   app.use(function(req, res, next) {
     delete req.body.id;
     next();
